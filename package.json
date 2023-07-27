@@ -1,8 +1,8 @@
 {
-  "name": "goit-react-hw-03-image-finder",
+  "name": "goit-react-hw-04-images",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://livegp.github.io/goit-react-hw-03-image-finder/",
+  "homepage": "https://livegp.github.io/goit-react-hw-04-images/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -12,6 +12,8 @@
     "fix:es": "npm run lint:es -- --fix",
     "lint:st": "stylelint ./src/**/*.{css,scss,jsx}",
     "fix:st": "npm run lint:st -- --fix",
+    "lint:es:st": "npm run lint:es && npm run lint:st",
+    "fix:es:st": "npm run lint:es -- --fix && npm run lint:st -- --fix",
     "lint:st-scss": "stylelint-config-prettier-scss-check"
   },
   "eslintConfig": {
