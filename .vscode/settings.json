@@ -1,0 +1,32 @@
+{
+  "cSpell.ignoreWords": [
+    "Marica",
+    "Roboto",
+    "Searchbar",
+    "Toastify",
+    "goit",
+    "noninteractive",
+    "pmarica",
+    "safesearch",
+    "stylelint",
+    "webformat",
+    "wght"
+  ],
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[html]": {
+    "editor.formatOnSave": true
+  },
+  "[json]": {
+    "editor.formatOnSave": true
+  },
+  "eslint.alwaysShowStatus": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "terminal.integrated.fontFamily": "FiraCode Nerd Font",
+  "cSpell.words": ["formik", "Phonebook"]
+}
