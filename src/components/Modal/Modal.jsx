@@ -1,47 +1,40 @@
 import PropTypes from 'prop-types';
-import { Component } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { Container, Overlay } from './Modal.styled';
 
-class Modal extends Component {
-  componentDidMount() {
-    document.addEventListener('mousedown', this.handleOutsideClick);
-    document.addEventListener('keydown', this.handleKeyPress);
-  }
+function Modal({ src, alt, onClose }) {
+  const modalRef = useRef(null);
 
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleOutsideClick);
-    document.removeEventListener('keydown', this.handleKeyPress);
-  }
+  useEffect(() => {
+    const handleOutsideClick = event => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        onClose();
+      }
+    };
 
-  handleOutsideClick = event => {
-    const { onClose } = this.props;
-    if (this.modalRef && !this.modalRef.contains(event.target)) {
-      onClose();
-    }
-  };
+    const handleKeyPress = event => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
 
-  handleKeyPress = event => {
-    const { onClose } = this.props;
-    if (event.key === 'Escape') {
-      onClose();
-    }
-  };
+    document.addEventListener('mousedown', handleOutsideClick);
+    document.addEventListener('keydown', handleKeyPress);
 
-  setModalRef = element => {
-    this.modalRef = element;
-  };
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [onClose]);
 
-  render() {
-    const { src, alt } = this.props;
-    return (
-      <Overlay>
-        <Container ref={this.setModalRef}>
-          <img src={src} alt={alt} />
-        </Container>
-      </Overlay>
-    );
-  }
+  return (
+    <Overlay>
+      <Container ref={modalRef}>
+        <img src={src} alt={alt} />
+      </Container>
+    </Overlay>
+  );
 }
 
 Modal.propTypes = {
