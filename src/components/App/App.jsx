@@ -20,12 +20,14 @@ function App() {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    fetchData(search, page);
+    if (search !== '' || page !== 1) {
+      fetchData(search, page);
+    }
   }, [search, page]);
 
-  const handleSearchSubmit = newSearch => {
-    if (newSearch !== search) {
-      setSearch(newSearch);
+  const handleSearchSubmit = input => {
+    if (search !== input) {
+      setSearch(input);
       setPage(1);
     }
   };
@@ -43,15 +45,15 @@ function App() {
     setModal(false);
   };
 
-  const fetchData = (search, page) => {
+  const fetchData = (searchIn, pageNumber) => {
     setLoading(true);
 
-    onSearch(search, page)
+    onSearch(searchIn, pageNumber)
       .then(newData => {
-        setHits(prevHits =>
-          page === 1 ? newData.hits : [...prevHits, ...newData.hits]
-        );
         setTotal(newData.totalHits);
+        const newHits =
+          pageNumber === 1 ? newData.hits : [...hits, ...newData.hits];
+        setHits(newHits);
         setLoading(false);
       })
       .catch(error => {
