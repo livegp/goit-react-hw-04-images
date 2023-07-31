@@ -23,7 +23,7 @@ function App() {
     if (search !== '' || page !== 1) {
       fetchData(search, page);
     }
-  }, [search, page]);
+  }, [search, page]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSearchSubmit = input => {
     if (search !== input) {
