@@ -22,6 +22,7 @@ async function onSearch(search, page) {
 
   try {
     const gallery = await ky.get(BASE_URL, options).json();
+    console.log(gallery);
     return gallery;
   } catch (error) {
     toast.error(`Error fetching data: ${error.message}`);
